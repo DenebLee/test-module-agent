@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+}
+
+group 'nanoit.kr'
+version 'v0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+dependencies {
+    // LOMBOk
+    implementation 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    // UTIL
+    implementation("org.apache.commons:commons-configuration2:2.1")
+    implementation("commons-io:commons-io:2.6")
+
+
+    // log
+    annotationProcessor("org.projectlombok:lombok:1.18.26")
+    implementation("org.projectlombok:lombok:1.18.26")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
+    implementation("ch.qos.logback:logback-core:1.2.3")
+    implementation("ch.qos.logback:logback-access:1.2.3")
+    implementation("org.slf4j:slf4j-api:1.7.25")
+
+    // XML
+    implementation("com.fasterxml.jackson.core:jackson-core:2.9.7")
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.9.7')
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.9.7")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.7")
+    implementation("com.google.guava:guava:20.0")
+    implementation("org.json:json:20220924")
+
+    // DB JDBC DRIVER
+    implementation 'org.postgresql:postgresql:42.5.1'
+
+    // MYBATIS
+    implementation group: 'org.mybatis', name: 'mybatis', version: '3.5.11'
+
+    // DBCP2
+    implementation group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.9.0'
+
+    // TEST_IMPLEMENTS
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
