@@ -1,6 +1,6 @@
 # Mock Agent
 
-![GitHub last commit](https://img.shields.io/github/last-commit/DenebLee/test-message-agent) ![GitHub repo size](https://img.shields.io/github/repo-size/DenebLee/test-message-agent) ![GitHub repo file count](https://img.shields.io/github/directory-file-count/DenebLee/test-message-agent)
+![GitHub last commit](https://img.shields.io/github/last-commit/DenebLee/unity-agent) ![GitHub repo size](https://img.shields.io/github/repo-size/DenebLee/unity-agent) ![GitHub repo file count](https://img.shields.io/github/directory-file-count/DenebLee/unity-agent)
 
 ---
 ## Table of Contents
