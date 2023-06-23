@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 public class PropertyDto {
 
     /*Service 설정 값*/
-    private String KEY;                                 // PROPERTY KEY, ex SMS, MMS, SMSDB
+    private String KEY;                                 // UUID
     private String URL;                                 // SERVER URL
     private String AGENT_ID;                            // DBMS ID OR SERVER ID
     private String AGENT_PWD;                           // DBMS PWD OR SERVER PWD
@@ -25,7 +25,7 @@ public class PropertyDto {
     private String DB_PORT;                             // DBMS PORT OR SERVER PORT
     private String DB_ID;                               // DBMS ID
     private String DB_PWD;                              // DBMS PASSWORD
-    private String DB_NAME;                                // ORACLE SERVICE NAME or LISTENER NAME, MSSQL MYSQL DB NAME
+    private String DB_NAME;                             // ORACLE SERVICE NAME or LISTENER NAME, MSSQL MYSQL DB NAME
     private String DB_MEMBER_ID;                        // 일단 미사용
     private String MSG_TABLE_NAME;                      // 발송 테이블명
     private String LOG_TABLE_NAME;                      // 로그 테이블명
@@ -38,7 +38,7 @@ public class PropertyDto {
     private String MULTI_MEDIA_MAX_SEND_PER_SECONDS;    // L/MMS 초당 발송속도
     private String KAKAO_MAX_SEND_PER_SECONDS;          // 친구톡 초당 발송속도
     private String ALIVE_SEND_INTERVAL;                 // Alive 패킷 주기
-    private String IMAGE_FOLDER_PATH;               // 이미지파일 디렉토리
+    private String IMAGE_FOLDER_PATH;                   // 이미지파일 디렉토리
     private int MAX_FILE_SIZE;                          // 파일최대 크기
     private int SEND_BUFFER_SIZE;                       // write buffer size
     private int RECEIVE_BUFFER_SIZE;                    // receive buffer size

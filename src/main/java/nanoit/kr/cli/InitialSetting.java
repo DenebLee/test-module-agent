@@ -19,6 +19,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,7 +36,6 @@ import java.util.stream.Stream;
 
 @Slf4j
 public class InitialSetting {
-
     private final Path path = Paths.get(GlobalConstant.CONFIG_FILE_PATH);
 
 
@@ -43,29 +43,61 @@ public class InitialSetting {
         return Files.isDirectory(path);
     }
 
-
     /**
      * @param dtos 콘솔 에서 사용자 가 입력한 값을 저장 하는 XML DTO list
-     *             Filename = <서비스>_<AgentID>.xml
-     *             ex) SMS_nano1.xml
+     *             Filename = <AgentID>_USER.xml
+     *             ex) nano1_USER.xml
+     *             <p>
      */
 
     public void makeXmlFile(List<XmlDto> dtos) {
-        for (XmlDto xmlDto : dtos) {
-            try {
-                JAXBContext context = JAXBContext.newInstance(XmlDto.class);
-                Marshaller marshaller = context.createMarshaller();
+        try {
+            JAXBContext context = JAXBContext.newInstance(XmlDto.class);
+            Marshaller marshaller = context.createMarshaller();
+            for (XmlDto xmlDto : dtos) {
                 marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
                 String fileName = xmlDto.getAgentId() + GlobalConstant.FILE_FORMAT;
-                File file = new File(path.toString() + "/" + fileName);
+                File file = new File(path.toString(), fileName);
                 marshaller.marshal(xmlDto, file);
-            } catch (Exception e) {
-                log.warn("[InitialSetting] make XML FAILED");
-                System.exit(-1);
             }
+        } catch (Exception e) {
+            log.warn("[InitialSetting] make XML FAILED {}", e.getMessage());
+            e.printStackTrace();
         }
     }
+
+
+    public void makeUserSettingXml() {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(XmlDto.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+
+
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void makeXmlFile2(XmlDto dto) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(XmlDto.class);
+            Marshaller marshaller = context.createMarshaller();
+
+
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            XmlDto xmlDto = (XmlDto) marshaller.marshal(dto,);
+
+            String fileName = dto.getAgentId() + GlobalConstant.FILE_FORMAT;
+            File file = new File(path.toString(), fileName);
+            marshaller.marshal(dto, file);
+        } catch (Exception e) {
+            log.warn("[InitialSetting] make XML FAILED {}", e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 
     public boolean isXmlFileExist() throws IOException {
         try (Stream<Path> files = Files.list(path)) {
@@ -75,12 +107,12 @@ public class InitialSetting {
         }
     }
 
-
     public Document parseXml(File file) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         return documentBuilder.parse(file);
     }
+
 
     public void deleteConfigXmlFiles() {
         try {
